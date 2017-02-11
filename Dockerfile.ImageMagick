@@ -1,0 +1,25 @@
+FROM alpine:3.5
+
+LABEL maintainer "brian@brianfoshee.com"
+
+RUN apk --update add ca-certificates wget build-base gcc abuild binutils binutils-doc gcc-doc libjpeg libpng tiff-dev freetype-dev ghostscript-dev \
+    && update-ca-certificates \
+    && cd /tmp \
+    && wget https://www.imagemagick.org/download/ImageMagick.tar.gz \
+    && mkdir ImageMagick \
+    && tar xzf ImageMagick.tar.gz -C ImageMagick --strip-components 1 \
+    && cd ImageMagick \
+    && ./configure \
+    && make \
+    && make install \
+    && ldconfig /usr/local/lib \
+    && cd ../ \
+    && rm -rf ImageMagick* \
+    && rm -rf /var/cache/apk/*
+
+RUN adduser -D magick
+USER magick
+WORKDIR /home/magick
+
+ENTRYPOINT ["identify"]
+CMD ["-version"]
