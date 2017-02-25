@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install apt-transport-https \
   && apt-get update && apt-get install yarn \
   && rm -rf /var/lib/apt/lists/*
 
-RUN npm install -gq ember-cli@2.11.0
+RUN npm install -gq ember-cli@2.11.1
 
 USER node
 
