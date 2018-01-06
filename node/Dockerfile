@@ -1,4 +1,4 @@
-FROM node:8.8.1
+FROM node:9.3.0
 
 RUN apt-get update \
     && apt-get install -yq --no-install-recommends \
