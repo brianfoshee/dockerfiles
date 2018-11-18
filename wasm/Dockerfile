@@ -15,4 +15,5 @@ RUN git clone https://github.com/llvm-mirror/llvm --branch release_70 /llvm \
 
 # https://github.com/cloudflare/cloudflare-workers-wasm-demo#how-to-build
 RUN git clone --recursive https://github.com/cloudflare/cloudflare-workers-wasm-demo.git /wasm-demo \
+  && cd /wasm-demo \
   && make
